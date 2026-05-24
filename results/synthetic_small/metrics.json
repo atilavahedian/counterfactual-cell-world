@@ -1,0 +1,104 @@
+{
+  "config": {
+    "seed": 7,
+    "world": {
+      "genes": 32,
+      "programs": 5,
+      "cell_types": 3,
+      "perturbation_genes": 10,
+      "cells_per_condition": 64,
+      "noise_scale": 0.06,
+      "nonlinear_scale": 0.75
+    },
+    "dataset": {
+      "train_conditions": 72,
+      "val_conditions": 18,
+      "test_conditions": 18,
+      "max_combo_order": 2,
+      "heldout_combo_fraction": 0.35
+    },
+    "model": {
+      "latent_dim": 48,
+      "hidden_dim": 96,
+      "message_steps": 3,
+      "dropout": 0.05
+    },
+    "training": {
+      "epochs": 28,
+      "batch_size": 12,
+      "learning_rate": 0.0015,
+      "weight_decay": 0.0001,
+      "mmd_weight": 0.25,
+      "graph_l1_weight": 0.0005,
+      "acyclicity_weight": 0.0001,
+      "device": "auto"
+    },
+    "output": {
+      "run_name": "synthetic_small"
+    }
+  },
+  "split_summary": {
+    "train": {
+      "conditions": 72,
+      "splits": {
+        "train": 72
+      },
+      "combo_orders": {
+        "2": 65,
+        "1": 7
+      },
+      "genes": 32,
+      "cells_per_condition": 64
+    },
+    "val": {
+      "conditions": 18,
+      "splits": {
+        "val": 18
+      },
+      "combo_orders": {
+        "1": 3,
+        "2": 15
+      },
+      "genes": 32,
+      "cells_per_condition": 64
+    },
+    "test": {
+      "conditions": 18,
+      "splits": {
+        "test": 18
+      },
+      "combo_orders": {
+        "2": 14,
+        "1": 4
+      },
+      "genes": 32,
+      "cells_per_condition": 64
+    }
+  },
+  "test_metrics": {
+    "mse": 0.0386160584166646,
+    "mae": 0.14219321310520172,
+    "mmd": 0.10212612897157669,
+    "energy_distance": 0.3241403326392174,
+    "mean_gene_correlation": 0.8714422258438114,
+    "coverage_90": 0.9359944760799408
+  },
+  "baseline_metrics": {
+    "direct_shift": {
+      "mse": 0.10904828831553459,
+      "mae": 0.23561368882656097,
+      "mmd": 0.17109880596399307,
+      "energy_distance": 0.5966888815164566,
+      "mean_gene_correlation": 0.721841287356105,
+      "coverage_90": 1.0
+    },
+    "mean_shift": {
+      "mse": 0.1428394392132759,
+      "mae": 0.26922712475061417,
+      "mmd": 0.1904613971710205,
+      "energy_distance": 0.6980077028274536,
+      "mean_gene_correlation": 0.7270751681396639,
+      "coverage_90": 0.9984130859375
+    }
+  }
+}
