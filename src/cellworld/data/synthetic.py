@@ -196,10 +196,9 @@ def _evolve_population(
 
     for _ in range(steps):
         regulatory = state @ ground_truth.adjacency.T
-        nonlinear = np.tanh(regulatory + type_drive + direct + 0.45 * propagated)
+        nonlinear = np.tanh(regulatory + type_drive + 0.25 * direct + 0.95 * propagated)
         drift = -0.32 * state + config.nonlinear_scale * nonlinear
         state = state + dt * drift
 
     state += rng.normal(0.0, config.noise_scale * np.sqrt(max(time, 0.1)), size=state.shape)
     return np.tanh(state).astype(np.float32)
-
