@@ -31,7 +31,16 @@ Given a source cell state distribution, a perturbation, a dose, and a time point
 
 The synthetic benchmark exposes held-out combinatorial perturbations, so a model that only memorizes single knockouts should fail.
 
+![Counterfactual population flow](docs/figures/repo_hero.png)
+
+## Benchmark Snapshot
+
+The checked run in `results/synthetic_small` hides intervention combinations during training. On the held-out split, the model beats both direct-shift and mean-shift baselines on MSE, MAE, MMD, energy distance, and mean gene correlation.
+
+![Held-out metrics](docs/figures/heldout_metrics.png)
+
+![Learned graph against simulator graph](docs/figures/graph_recovery.png)
+
 ## Current Status
 
 The repo starts with the synthetic world because it is the fastest way to test the algorithm honestly. Real dataset adapters are kept separate so the core modeling code can be judged before dataset wrangling takes over.
-

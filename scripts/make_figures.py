@@ -30,6 +30,7 @@ def main() -> None:
     _plot_predictions(run_dir / "test_predictions.npz", figure_dir / "population_projection.png")
     _plot_metrics(run_dir / "metrics.json", figure_dir / "heldout_metrics.png")
     _plot_architecture(figure_dir / "architecture.png")
+    _plot_hero(figure_dir / "repo_hero.png")
     print(f"wrote figures to {figure_dir}")
 
 
@@ -142,6 +143,39 @@ def _plot_architecture(output: Path) -> None:
     plt.close(fig)
 
 
+def _plot_hero(output: Path) -> None:
+    rng = np.random.default_rng(17)
+    left = rng.normal(loc=(-1.7, 0.0), scale=(0.35, 0.48), size=(360, 2))
+    right = rng.normal(loc=(1.7, 0.0), scale=(0.48, 0.52), size=(360, 2))
+    anchors = rng.uniform(low=(-2.4, -1.1), high=(2.4, 1.1), size=(34, 2))
+
+    fig, ax = plt.subplots(figsize=(11.0, 4.7), dpi=170)
+    ax.set_facecolor("#fbf9f5")
+    fig.patch.set_facecolor("#fbf9f5")
+    ax.axis("off")
+
+    for _ in range(120):
+        start = left[int(rng.integers(0, len(left)))]
+        end = right[int(rng.integers(0, len(right)))]
+        bend = rng.normal(0.0, 0.16)
+        xs = np.linspace(start[0], end[0], 80)
+        ys = np.linspace(start[1], end[1], 80) + bend * np.sin(np.linspace(0, np.pi, 80))
+        ax.plot(xs, ys, color="#d88948", alpha=0.12, lw=0.8)
+
+    for anchor in anchors:
+        neighbors = anchors[np.argsort(np.linalg.norm(anchors - anchor, axis=1))[1:4]]
+        for neighbor in neighbors:
+            color = "#171717" if anchor[0] < 0 else "#c45f2d"
+            ax.plot([anchor[0], neighbor[0]], [anchor[1], neighbor[1]], color=color, alpha=0.12, lw=0.7)
+    ax.scatter(anchors[:, 0], anchors[:, 1], s=rng.uniform(16, 70, size=len(anchors)), color="#171717", alpha=0.26)
+    ax.scatter(left[:, 0], left[:, 1], s=rng.uniform(12, 48, size=len(left)), color="#4b5b64", alpha=0.26)
+    ax.scatter(right[:, 0], right[:, 1], s=rng.uniform(12, 48, size=len(right)), color="#c45f2d", alpha=0.34)
+    ax.set_xlim(-2.75, 2.75)
+    ax.set_ylim(-1.35, 1.35)
+    fig.tight_layout(pad=0)
+    fig.savefig(output)
+    plt.close(fig)
+
+
 if __name__ == "__main__":
     main()
-
