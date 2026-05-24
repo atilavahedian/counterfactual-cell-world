@@ -21,6 +21,8 @@ uv run python scripts/make_figures.py --run-dir runs/synthetic_small
 uv run pytest
 ```
 
+The short paper-style note is in [`paper/main.pdf`](paper/main.pdf). The source is in [`paper/main.tex`](paper/main.tex).
+
 ## What The Model Tries To Learn
 
 Given a source cell state distribution, a perturbation, a dose, and a time point, the model predicts the target post-intervention distribution. It does this with three parts:
@@ -44,3 +46,13 @@ The checked run in `results/synthetic_small` hides intervention combinations dur
 ## Current Status
 
 The repo starts with the synthetic world because it is the fastest way to test the algorithm honestly. Real dataset adapters are kept separate so the core modeling code can be judged before dataset wrangling takes over.
+
+## Repository Map
+
+- `src/cellworld/data`: synthetic world, dataset contracts, CELLxGENE metadata helper
+- `src/cellworld/models`: learned gene graph, latent transition, decoder, losses
+- `src/cellworld/training`: training loop, checkpointing, baselines, artifact export
+- `src/cellworld/eval`: distribution-level metrics
+- `results/synthetic_small`: checked benchmark evidence
+- `docs/figures`: generated figures used by the README and note
+- `paper`: compact technical writeup
