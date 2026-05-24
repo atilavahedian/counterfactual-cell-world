@@ -1,0 +1,32 @@
+seed: 7
+world:
+  genes: 32
+  programs: 5
+  cell_types: 3
+  perturbation_genes: 10
+  cells_per_condition: 64
+  noise_scale: 0.06
+  nonlinear_scale: 0.75
+dataset:
+  train_conditions: 72
+  val_conditions: 18
+  test_conditions: 18
+  max_combo_order: 2
+  heldout_combo_fraction: 0.35
+model:
+  latent_dim: 48
+  hidden_dim: 96
+  message_steps: 3
+  dropout: 0.05
+training:
+  epochs: 12
+  batch_size: 12
+  learning_rate: 0.0015
+  weight_decay: 0.0001
+  mmd_weight: 0.25
+  graph_l1_weight: 0.0005
+  acyclicity_weight: 0.0001
+  device: auto
+output:
+  run_name: synthetic_small
+
