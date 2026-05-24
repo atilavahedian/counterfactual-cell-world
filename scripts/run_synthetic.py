@@ -7,11 +7,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from cellworld.training import train_synthetic
-from cellworld.utils.config import load_yaml
-
 
 def main() -> None:
+    from cellworld.training import train_synthetic
+    from cellworld.utils.config import load_yaml
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", default="configs/synthetic_small.yaml")
     parser.add_argument("--output-root", default="runs")

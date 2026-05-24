@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 from urllib.request import Request, urlopen
 
 
@@ -48,4 +48,3 @@ def _get_json(url: str, timeout: float) -> Any:
     request = Request(url, headers={"Accept": "application/json", "User-Agent": "cellworld/0.1"})
     with urlopen(request, timeout=timeout) as response:  # nosec: public metadata endpoint
         return json.loads(response.read().decode("utf-8"))
-

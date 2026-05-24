@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict, Iterable, List, Sequence, Tuple
+from typing import Dict, Iterable, Sequence, Tuple
 
 import numpy as np
 import torch
@@ -93,4 +93,3 @@ def summarize_conditions(conditions: Sequence[CellCondition]) -> Dict[str, objec
         "genes": conditions[0].gene_count if conditions else 0,
         "cells_per_condition": conditions[0].cell_count if conditions else 0,
     }
-

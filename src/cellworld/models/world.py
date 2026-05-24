@@ -5,7 +5,6 @@ from typing import Dict
 
 import torch
 from torch import nn
-from torch.nn import functional as F
 
 from cellworld.models.layers import FourierTimeFeatures, MLP, population_stats
 
@@ -204,4 +203,3 @@ def mean_shift_baseline(source: torch.Tensor, perturbation: torch.Tensor) -> tor
     centered = source - source_mean
     shifted_mean = torch.tanh(source_mean + perturbation.unsqueeze(1))
     return shifted_mean + centered
-
