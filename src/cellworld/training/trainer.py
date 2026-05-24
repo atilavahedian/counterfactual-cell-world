@@ -272,8 +272,6 @@ def _resolve_device(name: str) -> torch.device:
         return torch.device(name)
     if torch.cuda.is_available():
         return torch.device("cuda")
-    if getattr(torch.backends, "mps", None) is not None and torch.backends.mps.is_available():
-        return torch.device("mps")
     return torch.device("cpu")
 
 
@@ -281,4 +279,3 @@ def _seed_everything(seed: int) -> None:
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
-
